@@ -11,7 +11,9 @@ My purpose of putting these projects here is to preserve them as well as share t
 
 Note:
 ```
-The projects uploaded here may or maynot be in a fully functional order. They were most likely running at the time of presentation, but I may not have preserved every necessary reference to recreate these projects.
-<br>
+The projects uploaded here may or maynot be in a fully functional order. 
+They were most likely running at the time of presentation, but I may 
+not have preserved every necessary reference to recreate these projects.
+
 These projects and their schematics and code are for reference only.
 ```
