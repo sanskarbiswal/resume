@@ -1,0 +1,26 @@
+body{
+	background : url(images/i2.jpg) no-repeat center center fixed;
+	-webkit-background-size : cover;
+	-moz-background-size : cover;
+	-o-background-size : cover;
+	background-size : cover;
+}
+
+.pagePad{
+	padding : 2px;
+	background-color : black;
+}
+.navbar-header a.navbar-brand{
+	color : #009688;
+	font-family: 'Indie Flower', cursive;
+	font-size : 30px;
+}
+foot.footer{
+	display : block;
+	position : bottom;
+}
+
+.modal{
+	max-width : 60%;
+	height: auto;
+}

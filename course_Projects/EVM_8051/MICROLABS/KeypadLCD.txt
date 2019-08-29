@@ -1,0 +1,123 @@
+ORG   0H
+START:
+ACALL LCDINIT
+ACALL GETKEY
+AGAIN:	SJMP AGAIN
+LCDINIT:	MOV   A,#38H  	;INIT. LCD 2 LINES, 5X7 MATRIX
+ACALL COMNWRT 	;call command subroutine
+ACALL DELAY   		;give LCD some time
+MOV   A,#0EH 		;display on, cursor on
+ACALL COMNWRT 	;call command subroutine
+ACALL DELAY   		;give LCD some time
+MOV   A,#01 		;clear LCD
+ACALL COMNWRT 	;call command subroutine
+ACALL DELAY   		;give LCD some time
+MOV   A,#06H 		;shift cursor right
+ACALL COMNWRT 	;call command subroutine
+ACALL DELAY   		;give LCD some time
+MOV   A,#0C0H 		;cursor at line 1, pos. 4
+ACALL COMNWRT 	;call command subroutine
+ACALL DELAY   		;give LCD some time
+MOV   A,#'K' 		;display letter K
+ACALL DATAWRT  		;call display subroutine
+ACALL DELAY    		;give LCD some time
+MOV   A,#'E' 		;display letter E
+ACALL DATAWRT  		;call display subroutine
+ACALL DELAY    		;give LCD some time
+MOV   A,#'Y' 		;display letter Y
+ACALL DATAWRT  		;call display subroutine
+ACALL DELAY    		;give LCD some time		
+MOV   A,#':' 		;display letter :
+ACALL DATAWRT  		;call display subroutine
+ACALL DELAY    		;give LCD some time
+RET
+COMNWRT:MOV   P1,A     				
+CLR   P2.0     				
+CLR   P2.1     				
+SETB  P2.2  				
+ACALL DELAY    			
+CLR   P2.2     				
+RET
+DATAWRT:MOV   P1,A     				
+SETB  P2.0    				
+CLR   P2.1     				
+SETB  P2.2    			
+ACALL DELAY    			
+CLR   P2.2     				
+RET
+DELAY:MOV   R3,#50                  ;50 or higher for fast CPUs
+HERE2:MOV   R4,#255                ;R4 = 255
+HERE:DJNZ  R4,HERE               ;stay until R4 becomes 0
+DJNZ  R3,HERE2
+RET
+;Keyboard subroutine. This program sends the ASCII 
+;Code for pressed key to P0.1 
+;P0.4-P0.7 connected to rows, P0.0-P0.3 to column
+
+GETKEY:	MOV P0,#0FH
+REP:MOV P0,#0FH
+MOV A,P0
+ANL A,#0FH
+CJNE A,#0FH,OVER
+SJMP REP
+OVER:ACALL DELAY
+MOV P0,#0FH
+MOV A,P0
+ANL A,#0FH
+CJNE A,#0FH,OVER1
+SJMP REP
+OVER1:CLR  P0.4 	;ROW0 SELECTED
+SETB P0.5
+SETB P0.6
+SETB P0.7
+MOV A,P0
+ANL A,#0FH
+CJNE A,#0FH,ROW0
+CLR P0.5 		;ROW1 SELECTED
+SETB P0.7
+SETB P0.6
+SETB P0.4
+MOV A,P0
+ANL A,#0FH
+CJNE A,#0FH,ROW1
+CLR P0.6 		;ROW2 SELECTED
+SETB P0.7
+SETB P0.5
+SETB P0.4
+MOV A,P0
+ANL A,#0FH
+CJNE A,#0FH,ROW2
+CLR P0.7 		;ROW3 SELECTED
+SETB P0.4
+SETB P0.6
+SETB P0.5
+MOV A,P0
+ANL A,#0FH
+CJNE A,#0FH,ROW3
+SJMP REP
+MOV R0,#04H
+ROW0:MOV DPTR,#KCODE0
+SJMP FIND
+ROW1:MOV DPTR,#KCODE1
+SJMP FIND
+ROW2:MOV DPTR,#KCODE2
+SJMP FIND
+ROW3:MOV DPTR,#KCODE3
+FIND:RRC A
+JNC MATCH
+INC DPTR
+DJNZ R0,FIND
+MATCH:MOV   A,#0C4H 	;display pressed key
+ACALL COMNWRT 	;
+ACALL DELAY 
+CLR  A       		;set A=0 (match is found)
+MOVC A,@A+DPTR      	;get ASCII from table  	
+ACALL DATAWRT  		;call display subroutine
+ACALL DELAY    		;give LCD some time
+LJMP REP			;ASCII LOOK-UP TABLE FOR EACH ROW
+ORG  300H
+KCODE0: DB   'F','B','8','4' ;ROW 0 
+KCODE1: DB   'E','A','7','3' ;ROW 1
+KCODE2: DB   'D','0','6','2' ;ROW 2
+KCODE3: DB   'C','9','5','1' ;ROW 3
+END

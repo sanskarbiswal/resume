@@ -1,0 +1,3 @@
+".\Objects\evmCode_C.obj" 
+TO ".\Objects\evm_uC_Project" 
+PRINT(".\Listings\evm_uC_Project.m51") RAMSIZE(256) 

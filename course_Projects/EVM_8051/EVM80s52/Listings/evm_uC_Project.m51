@@ -1,0 +1,198 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    10/10/2018  22:26:25  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+F:\SOFTWARE\KEIL_UVISION\KEIL_V5\C51\BIN\BL51.EXE ..\HEX_Folder\evmCode_C.obj TO ..\HEX_Folder\evm_uC_Project PRINT (.\L
+>> istings\evm_uC_Project.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  ..\HEX_Folder\evmCode_C.obj (EVMCODE_C)
+  F:\SOFTWARE\KEIL_UVISION\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  F:\SOFTWARE\KEIL_UVISION\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  ..\HEX_Folder\evm_uC_Project (EVMCODE_C)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0024H     UNIT         ?DT?EVMCODE_C
+            DATA    002CH     0002H     UNIT         _DATA_GROUP_
+            IDATA   002EH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     009FH     UNIT         ?PR?CALC_VOTE?EVMCODE_C
+            CODE    089FH     008CH     UNIT         ?C_C51STARTUP
+            CODE    092BH     0020H     UNIT         ?PR?_DELAY?EVMCODE_C
+            CODE    094BH     001EH     UNIT         ?PR?MAIN?EVMCODE_C
+            CODE    0969H     0017H     UNIT         ?C_INITSEG
+            CODE    0980H     0015H     UNIT         ?PR?_DIGI_OUT?EVMCODE_C
+
+
+
+OVERLAY MAP OF MODULE:   ..\HEX_Folder\evm_uC_Project (EVMCODE_C)
+
+
+SEGMENT                           DATA_GROUP 
+  +--> CALLED SEGMENT           START    LENGTH
+-----------------------------------------------
+?C_C51STARTUP                   -----    -----
+  +--> ?PR?MAIN?EVMCODE_C
+  +--> ?C_INITSEG
+
+?PR?MAIN?EVMCODE_C              -----    -----
+  +--> ?PR?CALC_VOTE?EVMCODE_C
+
+?PR?CALC_VOTE?EVMCODE_C         -----    -----
+  +--> ?PR?_DIGI_OUT?EVMCODE_C
+
+?PR?_DIGI_OUT?EVMCODE_C         002CH    0002H
+  +--> ?PR?_DELAY?EVMCODE_C
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/10/2018  22:26:25  PAGE 2
+
+
+
+SYMBOL TABLE OF MODULE:  ..\HEX_Folder\evm_uC_Project (EVMCODE_C)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        EVMCODE_C
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  C:092BH         PUBLIC        _delay
+  C:094BH         PUBLIC        main
+  B:00B0H.2       PUBLIC        switch_1
+  B:00B0H.3       PUBLIC        switch_2
+  B:00B0H.4       PUBLIC        switch_3
+  B:00B0H.5       PUBLIC        switch_4
+  C:0800H         PUBLIC        calc_vote
+  D:0008H         PUBLIC        digi_val
+  D:001CH         PUBLIC        dig_1
+  D:001EH         PUBLIC        dig_2
+  D:0020H         PUBLIC        dig_3
+  D:0022H         PUBLIC        dig_4
+  D:0024H         PUBLIC        vote_1
+  D:0026H         PUBLIC        vote_2
+  D:0028H         PUBLIC        vote_3
+  D:002AH         PUBLIC        vote_4
+  C:0980H         PUBLIC        _digi_out
+  B:0090H.3       PUBLIC        dig_ctrl_1
+  B:0090H.2       PUBLIC        dig_ctrl_2
+  B:0090H.1       PUBLIC        dig_ctrl_3
+  B:0090H.0       PUBLIC        dig_ctrl_4
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        count
+  -------         DO            
+  D:0004H         SYMBOL        j
+  D:0002H         SYMBOL        k
+  -------         ENDDO         
+  C:092BH         LINE#         22
+  C:092BH         LINE#         23
+  C:092BH         LINE#         25
+  C:0935H         LINE#         26
+  C:094AH         LINE#         27
+  -------         ENDPROC       _DELAY
+  -------         PROC          _DIGI_OUT
+  D:0006H         SYMBOL        current_num
+  -------         DO            
+  D:002CH         SYMBOL        dig_disp
+  -------         ENDDO         
+  C:0980H         LINE#         29
+  C:0980H         LINE#         30
+  C:0980H         LINE#         32
+  C:0984H         LINE#         33
+  C:098EH         LINE#         34
+  -------         ENDPROC       _DIGI_OUT
+  -------         PROC          CALC_VOTE
+  C:0800H         LINE#         38
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/10/2018  22:26:25  PAGE 3
+
+
+  C:0800H         LINE#         39
+  C:0800H         LINE#         40
+  C:0800H         LINE#         41
+  C:0800H         LINE#         42
+  C:0803H         LINE#         43
+  C:0803H         LINE#         44
+  C:0806H         LINE#         45
+  C:0806H         LINE#         46
+  C:080EH         LINE#         47
+  C:0814H         LINE#         48
+  C:0818H         LINE#         49
+  C:0818H         LINE#         50
+  C:0818H         LINE#         52
+  C:081BH         LINE#         53
+  C:081BH         LINE#         54
+  C:081EH         LINE#         55
+  C:081EH         LINE#         56
+  C:0826H         LINE#         57
+  C:082CH         LINE#         58
+  C:0830H         LINE#         59
+  C:0830H         LINE#         60
+  C:0830H         LINE#         62
+  C:0833H         LINE#         63
+  C:0833H         LINE#         64
+  C:0836H         LINE#         65
+  C:0836H         LINE#         66
+  C:083EH         LINE#         67
+  C:0844H         LINE#         68
+  C:0848H         LINE#         69
+  C:0848H         LINE#         70
+  C:0848H         LINE#         72
+  C:084BH         LINE#         73
+  C:084BH         LINE#         74
+  C:084EH         LINE#         75
+  C:084EH         LINE#         76
+  C:0856H         LINE#         77
+  C:085CH         LINE#         78
+  C:0860H         LINE#         79
+  C:0860H         LINE#         80
+  C:0860H         LINE#         82
+  C:0862H         LINE#         83
+  C:0868H         LINE#         84
+  C:086FH         LINE#         85
+  C:0871H         LINE#         86
+  C:0877H         LINE#         87
+  C:087EH         LINE#         88
+  C:0880H         LINE#         89
+  C:0886H         LINE#         90
+  C:088DH         LINE#         91
+  C:088FH         LINE#         92
+  C:0895H         LINE#         93
+  C:089CH         LINE#         94
+  -------         ENDPROC       CALC_VOTE
+  -------         PROC          MAIN
+  C:094BH         LINE#         98
+  C:094BH         LINE#         99
+  C:094BH         LINE#         100
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/10/2018  22:26:25  PAGE 4
+
+
+  C:095CH         LINE#         101
+  C:0964H         LINE#         102
+  C:0964H         LINE#         103
+  C:0964H         LINE#         104
+  C:0967H         LINE#         105
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        EVMCODE_C
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0108H BYTE (12%) *
+******************************************************************************
+
+Program Size: data=47.0 xdata=0 code=408
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,3 @@
+"..\HEX_Folder\evmCode_C.obj" 
+TO "..\HEX_Folder\evm_uC_Project" 
+PRINT(".\Listings\evm_uC_Project.m51") RAMSIZE(256) 
